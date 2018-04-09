@@ -1,0 +1,17 @@
+---
+
+- hosts: automation
+  order: sorted
+  gather_facts: True
+  become: True
+  pre_tasks:
+    - name: Install docker-py for docker_deploy
+      pip:
+        name: docker-py
+  roles:
+    - name: franklinkim.sudo
+      tags: sudo
+    - name: geerlingguy.docker
+      tags: docker
+    - name: jar_docker
+      tags: jar_docker

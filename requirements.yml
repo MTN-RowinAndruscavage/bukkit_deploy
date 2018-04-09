@@ -1,0 +1,8 @@
+---
+# ansible-galaxy install -r requirements.yml
+
+- src: franklinkim.sudo
+  version: 1.8.0
+
+- src: geerlingguy.docker
+  version: 2.1.0

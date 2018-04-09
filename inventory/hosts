@@ -1,0 +1,27 @@
+all:
+  vars:
+    # franlinkim.sudo
+    sudo_defaults:
+      - defaults: env_reset
+      - defaults: mail_badpass
+      - defaults: secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+      - name: "{{ ansible_user }}"
+        defaults: 'requiretty'
+      - name: '%sudo'
+        defaults: '!requiretty'
+    sudo_users:
+      - name: "{{ ansible_user}}"
+      - name: '%sudo'
+        nopasswd: yes
+
+
+  children:
+    automation:
+      vars:
+        app_jarfiles:
+          - name: craftbukkit
+            url: https://cdn.getbukkit.org/craftbukkit/craftbukkit-1.12.2.jar
+      hosts:
+        bukkit:
+          ansible_host:  
+

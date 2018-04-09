@@ -1,0 +1,49 @@
+---
+driver:
+  name: vagrant
+  driver_plugin: vagrant
+  customize:
+    cpus: 2
+    memory: 2048
+
+platforms:
+  - name: ubuntu/xenial64
+
+provisioner:
+  name: ansible_playbook
+  ansible_cfg_path: /tmp/kitchen/ansible_kitchen.cfg
+  ansible_diff: true
+  ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
+  ansible_inventory: inventory/hosts
+  # ansible_vault_password_file: <%= ENV['HOME'] %>/.ssh/creds/ansible-airsupport_vault.pw
+  ansible_verbose: true
+  # ansible_verbosity: debug
+  ansible_verbosity: info
+  ansible_version: 2.4.3.0
+  idempotency_test: false
+  recursive_additional_copy_path:
+  #   - inventory
+    - roles.galaxy
+    - roles
+  #   - test
+  require_ansible_omnibus: true
+  require_ansible_repo: false
+  require_chef_for_busser: false
+  require_ruby_for_busser: true
+  # requirements_path: requirements.yml
+  roles_path: roles
+  update_package_repos: true
+
+verifier:
+  name: serverspec
+  default_pattern: true
+  extra_flags: '-I /tmp/verifier/suites/serverspec'
+
+suites:
+  - name: automation
+    driver_config:
+      network:
+        - ["forwarded_port", {guest: 25565, host: 25565}]  # Minecraft
+    provisioner:
+      playbook: playbook.yml
+      hosts: automation
