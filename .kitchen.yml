@@ -11,7 +11,7 @@ platforms:
 
 provisioner:
   name: ansible_playbook
-  ansible_cfg_path: /tmp/kitchen/ansible_kitchen.cfg
+  ansible_cfg_path: /tmp/kitchen/ansible.cfg
   ansible_diff: true
   ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
   ansible_inventory: inventory/hosts
@@ -21,6 +21,8 @@ provisioner:
   ansible_verbosity: info
   ansible_version: 2.4.3.0
   idempotency_test: false
+  additional_copy_path:
+    - ansible.cfg
   recursive_additional_copy_path:
   #   - inventory
     - roles.galaxy
@@ -30,7 +32,7 @@ provisioner:
   require_ansible_repo: false
   require_chef_for_busser: false
   require_ruby_for_busser: true
-  # requirements_path: requirements.yml
+  requirements_path: requirements.yml
   roles_path: roles
   update_package_repos: true
 

@@ -1,0 +1,16 @@
+# ansible stuff
+*.retry
+site.retry.*
+
+# Ansible galaxy managed roles
+roles.galaxy/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# test kitchen
+.kitchen/
+
+# molecule
+.molecule/
