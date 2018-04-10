@@ -1,2 +1,3 @@
 ---
 # defaults file for jre_docker
+app_jarfiles: []

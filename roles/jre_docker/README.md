@@ -1,48 +1,92 @@
-Role Name
-=========
+jre_docker
+============
 
-A brief description of the role goes here.
+Downloads and runs a java .jar app in docker
+
 
 Requirements
-------------
+---------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+Need docker installed and configured
+
 
 Role Variables
---------------
+-----------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+Define the app_jarfiles list with the docker container name, jar filename, and jar download url
+
+    app_jarfiles:
+
+      # Minimal example
+      - name: helloworld
+        jarfile: helloworld-v1.jar
+        url: http://example.com/helloworld.jar
+
+      # java app that needs options and settings
+      - name: craftbukkit
+        jarfile: craftbukkit-1.12.2.jar
+        url: https://cdn.getbukkit.org/craftbukkit/craftbukkit-1.12.2.jar
+        # Pick a java version from https://hub.docker.com/_/openjdk/
+        java_docker_base_image: openjdk:8-jre-alpine
+        java_pretasks: " echo eula=true > /app/eula.txt &&"
+        java_args: " -Xmx1024M -Xms1024M"
+        app_args: " nogui --noconsole"
+        # Additional docker build steps for the container
+        run: " apk update; apk upgrade"
+        # Port to expose in docker container
+        port: 25565
+        # port to map from host:docker container
+        published_ports: 25565:25565
 
 Dependencies
-------------
+---------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+geerlingguy.docker or any other role to give ansible access to a docker CLI and
+the python docker-py module
+
 
 Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables
-passed in as parameters) is always nice for users too:
+--------------------
 
     - hosts: servers
       roles:
-         - { role: jre_docker, x: 42 }
+         - role: jre_docker
+
+
+Unit Testing
+---------------
+
+This ansible role uses molecule to perform linting and unit testing with:
+ * yamllint
+ * ansible-lint
+ * flake8 (for any .py code that might have been hiding in here)
+ * testinfra in docker
+
+
+Run unit tests with:
+
+    pipenv run molecule test
+
+
+`molecule` and its dependencies should already be installed by the top-level
+pipenv for this playbook.
+
+However, it relies on a local docker to preform the final testinfra test. I
+haven't really bothered to write any testinfra tests yet since the test-kitchen
+serverspec covers it, and the default `app_jarfiles` list is empty anyways, so
+don't bother trying to get the last test to run too much.
+
+But it feels good to see the other linting and coding conventions tests pass via
+automated checks for any changes made to this role!
+
 
 License
--------
+---------
 
-BSD
+GPLv3
+
 
 Author Information
-------------------
+----------------------
 
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+rowin@andruscavage.com
