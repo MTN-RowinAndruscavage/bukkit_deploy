@@ -25,7 +25,7 @@ provisioner:
   additional_copy_path:
     - ansible.cfg
   recursive_additional_copy_path:
-  #   - inventory
+    # - inventory
     - roles.galaxy
     - roles
     - test
@@ -33,12 +33,8 @@ provisioner:
   require_ansible_repo: false
   require_chef_for_busser: false
   require_ruby_for_busser: true
-  ## Download required roles from galaxy with:
-  ##    ansible-galaxy install -r requirements.yml
-  ## Otherwise, uncomment the following to get fresh roles downloaded
-  ## onto the target testkitchen instance
-  # requirements_path: requirements.yml
-  roles_path: roles
+  requirements_path: requirements.yml
+  # roles_path: roles.galaxy:roles
   update_package_repos: true
 
 verifier:
@@ -51,6 +47,7 @@ suites:
     driver_config:
       network:
         - ["forwarded_port", {guest: 25565, host: 25565}]  # Minecraft
+        - ["forwarded_port", {guest: 8080, host: 8080}]  # Jenkins
     provisioner:
       playbook: playbook.yml
       hosts: automation

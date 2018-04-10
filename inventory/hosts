@@ -30,7 +30,14 @@ all:
             port: 25565
             published_ports: 25565:25565
 
+          # Hey, a jar that can build and deploy jars
+          - name: jenkins
+            jarfile: jenkins.war
+            url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+            port: 8080
+            published_ports: 8080:8080
+
       hosts:
         bukkit:
-          ansible_host:  
+          ansible_host: # production IP goes here
 

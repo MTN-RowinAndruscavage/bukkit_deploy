@@ -6,19 +6,19 @@
     state: directory
     mode: 0755
 
-- name: Download app_jarfiles
+- name: Download app_jarfiles for {{ item.name }}
   get_url:
     url: "{{ item.url }}"
     dest: app/{{ item.name}}/{{ item.jarfile }}
 
-- name: Deploy dockerfile
+- name: Deploy dockerfile for {{ item.name }}
   template:
     src: Dockerfile.j2
     dest: app/{{ item.name }}/Dockerfile
     mode: 0644
   register: df
 
-- name: Build container for app
+- name: Build container for {{ item.name }}
   docker_image:
     name: "{{ item.name }}"
     path: app/{{ item.name }}
@@ -26,7 +26,7 @@
     # buildargs:
     #   listen_port: 25565
 
-- name: Launch container
+- name: Launch container for {{ item.name }}
   docker_container:
     name: "{{ item.name }}"
     image: "{{ item.name }}"
