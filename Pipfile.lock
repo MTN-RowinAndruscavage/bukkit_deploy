@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7450dec87417928c0ca4935f3a1c0abb791a86e0a32a044315b26f0f350452fa"
+            "sha256": "683974d5136e9e59e2e445da05ca46a1b3c2ffe5eb352565b2f6f17205bae7ac"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -17,7 +17,9 @@
             "sys_platform": "darwin"
         },
         "pipfile-spec": 6,
-        "requires": {},
+        "requires": {
+            "python_version": "2.7"
+        },
         "sources": [
             {
                 "name": "pypi",
@@ -29,10 +31,10 @@
     "default": {
         "ansible": {
             "hashes": [
-                "sha256:74bb063322372fc9e2a84bbe562ab5d1b45a2fba3ec609c03d824758e6dd9c38",
-                "sha256:714ede4b0f5455eb2dd2536d8cabb42ab439f52b5ac902308ad027b46f68e6dc"
+                "sha256:5d1bf4dc4369130a175700fd6c05687fcb3b88d77e366d3b7dedc79c34ce5693",
+                "sha256:2b02756b9b6bc02d9028a4577ef332f8126c607528e18db825672b0301343358"
             ],
-            "version": "==2.5.0"
+            "version": "==2.4.4.0"
         },
         "asn1crypto": {
             "hashes": [

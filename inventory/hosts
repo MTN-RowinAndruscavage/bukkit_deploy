@@ -20,7 +20,16 @@ all:
       vars:
         app_jarfiles:
           - name: craftbukkit
+            jarfile: craftbukkit-1.12.2.jar
             url: https://cdn.getbukkit.org/craftbukkit/craftbukkit-1.12.2.jar
+            # Pick a java version from https://hub.docker.com/_/openjdk/
+            java_docker_base_image: openjdk:8-jre-alpine
+            java_pretasks: " echo eula=true > /app/eula.txt &&"
+            java_args: " -Xmx1024M -Xms1024M"
+            app_args: " nogui --noconsole" 
+            port: 25565
+            published_ports: 25565:25565
+
       hosts:
         bukkit:
           ansible_host:  

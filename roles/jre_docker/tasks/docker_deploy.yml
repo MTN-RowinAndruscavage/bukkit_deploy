@@ -1,0 +1,35 @@
+---
+
+- name: Ensure build dir for {{ item.name }}
+  file: 
+    path: app/{{ item.name }}
+    state: directory
+    mode: 0755
+
+- name: Download app_jarfiles
+  get_url:
+    url: "{{ item.url }}"
+    dest: app/{{ item.name}}/{{ item.jarfile }}
+
+- name: Deploy dockerfile
+  template:
+    src: Dockerfile.j2
+    dest: app/{{ item.name }}/Dockerfile
+    mode: 0644
+  register: df
+
+- name: Build container for app
+  docker_image:
+    name: "{{ item.name }}"
+    path: app/{{ item.name }}
+    force: "{{ df|changed }}"
+    # buildargs:
+    #   listen_port: 25565
+
+- name: Launch container
+  docker_container:
+    name: "{{ item.name }}"
+    image: "{{ item.name }}"
+    state: started
+    volumes: "{{ item.name }}:/app:rw"
+    published_ports: "{{ item.published_ports | default('') }}"

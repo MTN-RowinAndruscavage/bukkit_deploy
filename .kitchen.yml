@@ -8,6 +8,8 @@ driver:
 
 platforms:
   - name: ubuntu/xenial64
+  ## Uncomment to test on other platforms
+  # - name: ubuntu/trusty64
 
 provisioner:
   name: ansible_playbook
@@ -15,24 +17,27 @@ provisioner:
   ansible_diff: true
   ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
   ansible_inventory: inventory/hosts
-  # ansible_vault_password_file: <%= ENV['HOME'] %>/.ssh/creds/ansible-airsupport_vault.pw
   ansible_verbose: true
   # ansible_verbosity: debug
   ansible_verbosity: info
-  ansible_version: 2.4.3.0
-  idempotency_test: false
+  ansible_version: 2.4.4.0
+  idempotency_test: true
   additional_copy_path:
     - ansible.cfg
   recursive_additional_copy_path:
   #   - inventory
     - roles.galaxy
     - roles
-  #   - test
+    - test
   require_ansible_omnibus: true
   require_ansible_repo: false
   require_chef_for_busser: false
   require_ruby_for_busser: true
-  requirements_path: requirements.yml
+  ## Download required roles from galaxy with:
+  ##    ansible-galaxy install -r requirements.yml
+  ## Otherwise, uncomment the following to get fresh roles downloaded
+  ## onto the target testkitchen instance
+  # requirements_path: requirements.yml
   roles_path: roles
   update_package_repos: true
 

@@ -1,0 +1,12 @@
+---
+
+- name: Ensure app directory
+  file:
+    path: app
+    state: directory
+    mode: 0755
+
+- name: Build and deploy docker container for {{ item.name }}
+  include: docker_deploy.yml
+  with_items: "{{ app_jarfiles }}"
+

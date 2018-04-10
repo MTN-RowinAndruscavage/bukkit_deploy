@@ -4,12 +4,15 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[requires]
+# ansible still needs python2.7 for full functionality
+python_version = '2.7'
 
 [dev-packages]
-
+# linting and code convention test suite for individual roles
 molecule = "*"
 
 
 [packages]
-
-ansible = "*"
+# Let's stick to ansible 2.4 until 2.5.0.0 has a point release
+ansible = '<2.5'

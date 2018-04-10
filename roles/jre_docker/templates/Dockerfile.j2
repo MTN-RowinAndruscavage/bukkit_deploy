@@ -1,0 +1,9 @@
+FROM {{ item.java_docker_base_image | default('openjdk:8-jre-alpine') }}
+WORKDIR /app
+VOLUME /app
+{% if item.port is defined -%}
+  EXPOSE {{ item.port }}
+{% endif %}
+COPY . /app
+CMD {{- item.java_pretasks | default('') }} java -jar {{ item.jarfile }}
+    {{- item.app_args | default('') }}
