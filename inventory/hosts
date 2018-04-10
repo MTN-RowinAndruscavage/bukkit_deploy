@@ -30,12 +30,18 @@ all:
             port: 25565
             published_ports: 25565:25565
 
-          # Hey, a jar that can build and deploy jars
+          # Hey, a jar that can build and deploy java apps
           - name: jenkins
             jarfile: jenkins.war
             url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+            java_docker_base_image: openjdk:8-jre-alpine
+            run: " apk update; apk add ttf-dejavu"
+            java_pretasks: " JENKINS_HOME=/app"
+            app_args: " -Djava.awt.headless=true"
             port: 8080
             published_ports: 8080:8080
+            # After launching, initial admin password found under:
+            #   cat /var/lib/docker/volumes/jenkins/_data/secrets/initialAdminPassword
 
       hosts:
         bukkit:

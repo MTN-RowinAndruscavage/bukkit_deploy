@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure build dir for {{ item.name }}
-  file: 
+  file:
     path: app/{{ item.name }}
     state: directory
     mode: 0755
@@ -23,8 +23,6 @@
     name: "{{ item.name }}"
     path: app/{{ item.name }}
     force: "{{ df|changed }}"
-    # buildargs:
-    #   listen_port: 25565
 
 - name: Launch container for {{ item.name }}
   docker_container:

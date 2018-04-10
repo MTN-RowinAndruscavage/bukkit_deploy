@@ -13,7 +13,5 @@
       tags: sudo
     - name: geerlingguy.docker
       tags: docker
-#    - name: jar_docker
-#      tags: jar_docker
     - name: jre_docker
       tags: jre_docker

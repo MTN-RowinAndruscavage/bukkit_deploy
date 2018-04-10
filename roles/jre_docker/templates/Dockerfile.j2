@@ -5,5 +5,8 @@ VOLUME /app
   EXPOSE {{ item.port }}
 {% endif %}
 COPY . /app
+{% if item.run is defined -%}
+  RUN {{ item.run }}
+{% endif %}
 CMD {{- item.java_pretasks | default('') }} java -jar {{ item.jarfile }}
     {{- item.app_args | default('') }}

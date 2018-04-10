@@ -9,4 +9,3 @@
 - name: Build and deploy docker container for {{ item.name }}
   include: docker_deploy.yml
   with_items: "{{ app_jarfiles }}"
-
