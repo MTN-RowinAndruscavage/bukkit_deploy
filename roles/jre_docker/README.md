@@ -15,31 +15,31 @@ Role Variables
 
 Define the app_jarfiles list with the docker container name, jar filename, and jar download url
 
-    ```yaml
-    app_jarfiles:
+```yaml
+app_jarfiles:
 
-      # Minimal example
-      - name: helloworld
-        jarfile: helloworld-v1.jar
-        url: http://example.com/helloworld.jar
+  # Minimal example
+  - name: helloworld
+    jarfile: helloworld-v1.jar
+    url: http://example.com/helloworld.jar
 
-      # java app that needs options and settings
-      - name: craftbukkit
-        jarfile: craftbukkit-1.12.2.jar
-        url: https://cdn.getbukkit.org/craftbukkit/craftbukkit-1.12.2.jar
-        # Pick a java version from https://hub.docker.com/_/openjdk/
-        java_docker_base_image: openjdk:8-jre-alpine
-        java_pretasks: " echo eula=true > /app/eula.txt &&"
-        java_args: " -Xmx1024M -Xms1024M"
-        app_args: " nogui --noconsole"
-        # Additional docker build steps for the container
-        run: " apk update; apk upgrade"
-        # Port to expose in docker container
-        port: 25565
-        # port to map from host:docker container
-        published_ports: 25565:25565
+  # java app that needs options and settings
+  - name: craftbukkit
+    jarfile: craftbukkit-1.12.2.jar
+    url: https://cdn.getbukkit.org/craftbukkit/craftbukkit-1.12.2.jar
+    # Pick a java version from https://hub.docker.com/_/openjdk/
+    java_docker_base_image: openjdk:8-jre-alpine
+    java_pretasks: " echo eula=true > /app/eula.txt &&"
+    java_args: " -Xmx1024M -Xms1024M"
+    app_args: " nogui --noconsole"
+    # Additional docker build steps for the container
+    run: " apk update; apk upgrade"
+    # Port to expose in docker container
+    port: 25565
+    # port to map from host:docker container
+    published_ports: 25565:25565
 
-    ```
+```
 
 Dependencies
 ---------------
@@ -51,12 +51,12 @@ the python docker-py module
 Example Playbook
 --------------------
 
-    ```yaml
-    - hosts: servers
-      roles:
-         - role: jre_docker
+```yaml
+- hosts: servers
+  roles:
+     - role: jre_docker
 
-    ```
+```
 
 Unit Testing
 ---------------
