@@ -15,6 +15,7 @@ Role Variables
 
 Define the app_jarfiles list with the docker container name, jar filename, and jar download url
 
+    ```yaml
     app_jarfiles:
 
       # Minimal example
@@ -38,6 +39,8 @@ Define the app_jarfiles list with the docker container name, jar filename, and j
         # port to map from host:docker container
         published_ports: 25565:25565
 
+    ```
+
 Dependencies
 ---------------
 
@@ -48,10 +51,12 @@ the python docker-py module
 Example Playbook
 --------------------
 
+    ```yaml
     - hosts: servers
       roles:
          - role: jre_docker
 
+    ```
 
 Unit Testing
 ---------------

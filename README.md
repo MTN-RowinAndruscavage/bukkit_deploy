@@ -25,6 +25,7 @@ your own .jar file.
 Ansible is a module for python2. After initially cloning this repo, install it
 using pipenv:
 
+    ```bash
     pip install pipenv
     pipenv shell
 
@@ -33,6 +34,7 @@ using pipenv:
 
     # Download public ansible roles
     ansible-galaxy install -r requirements.yml
+    ```
 
 ### Running ansible
 
@@ -64,6 +66,7 @@ integration testing on playbooks
 
 ### Usage:
 
+    ```bash
     # Use ruby packages defined in Gemfile
     bundle install
 
@@ -72,11 +75,13 @@ integration testing on playbooks
 
     # Execute a full test
     bundle exec kitchen test -d never automation-ubuntu-xenial64
+    ```
 
 If everything converges and completes verification, you'll be able to connect to
 the minecraft server at localhost:25565 , and point a browser at localhost:8080
 to finish setting up Jenkins-CI
 
+    ```bash
     # How to log in and poke around your VM
     bundle exec kitchen login automation-ubuntu-xenial64
     sudo docker ps
@@ -84,3 +89,4 @@ to finish setting up Jenkins-CI
 
     # Destroy VMs when done
     bundle exec kitchen destroy
+    ```
