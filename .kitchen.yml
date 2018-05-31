@@ -5,6 +5,8 @@ driver:
   customize:
     cpus: 2
     memory: 2048
+    ## WORKAROUND: Windows - disable virtualbox consolelog on vagrant for WSL
+    uartmode1: disconnected
 
 platforms:
   - name: ubuntu/xenial64
