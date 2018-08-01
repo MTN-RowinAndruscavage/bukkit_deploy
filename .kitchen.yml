@@ -23,6 +23,9 @@ provisioner:
   # ansible_verbosity: debug
   ansible_verbosity: info
   ansible_version: 2.4.4.0
+  env_vars:
+    ## Human-readable output for ansible 2.4
+    ANSIBLE_STDOUT_CALLBACK: debug
   idempotency_test: true
   additional_copy_path:
     - ansible.cfg
