@@ -9,9 +9,10 @@ driver:
     uartmode1: disconnected
 
 platforms:
-  - name: ubuntu/xenial64
+  - name: generic/ubuntu1804
   ## Uncomment to test on other platforms
-  # - name: ubuntu/trusty64
+  # - name: generic/ubuntu1810
+  # - name: generic/ubuntu1604
 
 provisioner:
   name: ansible_playbook

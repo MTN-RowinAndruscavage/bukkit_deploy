@@ -9,7 +9,7 @@
       pip:
         name: docker-py
   roles:
-    - name: franklinkim.sudo
+    - name: weareinteractive.sudo
       tags: sudo
     - name: geerlingguy.docker
       tags: docker
