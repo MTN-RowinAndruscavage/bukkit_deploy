@@ -12,7 +12,7 @@ GEM
     builder (3.2.3)
     coderay (1.1.2)
     erubis (2.7.0)
-    excon (0.62.0)
+    excon (0.71.0)
     ffi (1.10.0)
     formatador (0.2.5)
     gssapi (1.2.0)
