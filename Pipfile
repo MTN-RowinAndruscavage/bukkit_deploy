@@ -15,4 +15,4 @@ molecule = "*"
 
 [packages]
 # Let's stick to ansible 2.4 until 2.5.0.0 has a point release
-ansible = '<2.5'
+ansible = '<2.10'
